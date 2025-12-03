@@ -1,70 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Đơn đăng ký thành viên - CBT's ESC</title>
-  <style>
-    :root { --bg:#e8f5f0; --card:#ffffff; --primary:#1e8c6f; --accent:#2fb98d; --text:#0b3d2e; }
-    body { font-family:Inter, system-ui; margin:0; background:var(--bg); color:var(--text); }
-    .container { max-width:700px; margin:20px auto; padding:16px; }
-    .header-img img { width:100%; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.15); }
-    h1 { text-align:center; margin:24px 0; color:var(--primary); font-size:26px; }
-    form { background:var(--card); padding:20px; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:16px; }
-    label { font-weight:600; margin-bottom:4px; }
-    input, select, textarea { padding:10px; border-radius:10px; border:1px solid #cddad4; font-size:15px; width:100%; }
-    textarea { resize:vertical; min-height:90px; }
-    button { margin-top:8px; background:var(--primary); color:#fff; border:0; padding:12px; border-radius:12px; font-size:16px; cursor:pointer; font-weight:600; }
-    button:hover { background:var(--accent); }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký thành viên - English Speaking Club</title>
+
+    <!-- Font đẹp mắt -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #0f4338, #1b5f4a);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            background: white;
+            width: 420px;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.8s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h2 {
+            text-align: center;
+            color: #345;
+            margin-bottom: 10px;
+        }
+
+        p.description {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        label {
+            font-weight: 500;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 5px rgba(102, 166, 255, 0.6);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1b5f4a;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #134436;
+        }
+
+        /* Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .popup {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            border-radius: 15px;
+            text-align: center;
+            animation: popUp 0.5s ease;
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .popup button {
+            background: #1b5f4a;
+            margin-top: 20px;
+        }
+
+        .contact {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .contact a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header-img">
-      <img src="Cover upgraded (1).JPG" alt="ESC banner" />
+    <div class="container">
+        <img src="Cover upgraded (1).JPG" alt="ESC Banner" style="width:100%; border-radius:12px; margin-bottom:15px;" />
+        <h2>Đăng ký thành viên</h2>
+        <p class="description">Hãy điền đầy đủ thông tin bên dưới để tham gia English Speaking Club!</p>
+
+        <form id="registerForm">
+            <label>Họ và tên:</label>
+            <input type="text" required placeholder="Nhập họ tên đầy đủ..." />
+
+            <label>Lớp:</label>
+            <input type="text" required placeholder="VD: 12A1" />
+
+            <label>Số điện thoại:</label>
+            <input type="text" required placeholder="Nhập số điện thoại liên hệ..." />
+
+            <label>Ban bạn muốn ứng tuyển:</label>
+            <select required>
+                <option value="">-- Chọn một ban --</option>
+                <option>Content (Nội dung)</option>
+                <option>Event Organizers (Sự kiện)</option>
+                <option>Human Resources & External Relations (Nhân sự – Đối ngoại)</option>
+                <option>Media (Truyền thông)</option>
+                <option>Set Up (Hậu cần)</option>
+            </select>
+
+            <label>Lý do bạn muốn tham gia:</label>
+            <textarea rows="3" placeholder="Viết lý do của bạn..." required></textarea>
+
+            <button type="submit">Gửi đăng ký</button>
+        </form>
+
+        <div class="contact">
+            <p>Liên hệ với chúng mình qua:</p>
+            <p>Email: <a href="mailto:englishspeakingclubbentre@gmail.com">englishspeakingclubbentre@gmail.com</a></p>
+            <p>Facebook: <a href="https://www.facebook.com/EngSpeakingClub" target="_blank">EngSpeakingClub</a></p>
+        </div>
     </div>
 
-    <h1>Đơn đăng kí thành viên Câu lạc bộ Tiếng Anh<br>CBT's English Speaking Club (ESC)</h1>
+    <!-- Popup -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <h3>Cảm ơn bạn đã đăng ký!</h3>
+            <p>Chúng mình sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+            <button onclick="closePopup()">Đóng</button>
+        </div>
+    </div>
 
-    <form>
-      <div>
-        <label>Họ tên</label>
-        <input type="text" placeholder="Nguyễn Văn A" required />
-      </div>
+    <script>
+        const form = document.getElementById("registerForm");
+        const popup = document.getElementById("popup");
 
-      <div>
-        <label>Lớp</label>
-        <input type="text" placeholder="12A1" required />
-      </div>
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            popup.style.display = "flex";
+        });
 
-      <div>
-        <label>Số điện thoại</label>
-        <input type="tel" placeholder="0901234567" required />
-      </div>
-
-      <div>
-        <label>Địa chỉ email</label>
-        <input type="email" placeholder="email@example.com" required />
-      </div>
-
-      <div>
-        <label>Ban muốn đăng ký</label>
-        <select required>
-          <option value="">-- Chọn ban --</option>
-          <option>Ban Nội dung</option>
-          <option>Ban Hậu cần</option>
-          <option>Ban Media</option>
-          <option>Ban Sự kiện</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Vì sao bạn chọn ban này?</label>
-        <textarea placeholder="Viết lý do của bạn..." required></textarea>
-      </div>
-
-      <button type="submit">Gửi đăng ký</button>
-    </form>
-  </div>
+        function closePopup() {
+            popup.style.display = "none";
+            form.reset();
+        }
+    </script>
 </body>
 </html>
